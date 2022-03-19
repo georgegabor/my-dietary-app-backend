@@ -18,4 +18,8 @@ public class FoodService {
   public List<Food> getAll() {
     return foodRepository.getAll();
   }
+
+  public Food create(Food food) {
+    return foodRepository.create(food);
+  }
 }

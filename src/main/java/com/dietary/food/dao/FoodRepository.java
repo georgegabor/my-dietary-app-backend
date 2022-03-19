@@ -34,6 +34,18 @@ public class FoodRepository extends AbstractDao {
     return super.getJdbcTemplate().query(sql, new HashMap<>(), getRowMapper());
   }
 
+  public Food create(Food food) {
+    String sql =
+        "INSERT INTO food_nutrition_facts (name, energy_kcal, total_fat, saturated_fat, total_carbohydrate, sugar, protein, salt)"
+            + "VALUES (:name, :energy_kcal, :total_fat, :saturated_fat, :total_carbohydrate, :sugar, :protein, :salt)";
+
+    int result = super.getJdbcTemplate().update(sql, this.getParams(food));
+
+    System.out.println("result = " + result);
+
+    return food;
+  }
+
   private RowMapper<Food> getRowMapper() {
     return (rs, rowNum) ->
         new Food()
